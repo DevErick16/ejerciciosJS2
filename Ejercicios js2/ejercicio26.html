@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Contador de vocales</h1>
+    Ingresa tu palabra: 
+    <input type="text" id="entradaTexto">
+    <button onclick="contarVocales()">Contar vocales</button><br>
+    <div id="resultado"></div>
+
+    <script>
+
+        function contarVocalesTexto(texto){
+            var vocales = ["a", "e", "i", "o", "u"];
+            var totalVocales = 0;
+
+            for(let i = 0; i < texto.length ; i++){
+                if(vocales.includes(texto[i].toLowerCase())){
+                    totalVocales++;
+                }
+            }
+            return totalVocales;
+        }
+
+        function contarVocales(){
+            const entradaTexto = document.getElementById('entradaTexto');
+            const elementoResultado = document.getElementById('resultado');
+            const texto = entradaTexto.value;
+            const resultadoContador = contarVocalesTexto(texto);
+
+            elementoResultado.innerHTML = `El total de vocales en la palabra ${texto}
+            son: ${resultadoContador}`;
+        }
+    </script>
+</body>
+</html>

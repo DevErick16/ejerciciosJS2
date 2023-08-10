@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ejercicios</h1>
+    Introduce tu palabra:
+    <input type="text" id="textoEntrada">
+    <button onclick="mostrarContenidoTexto()">Contenido de Texto</button>
+    <p id="resultado"></p>
+    <p id="resultado2"></p>
+
+    <script>
+        function contadorVocalesTexto (texto){
+            const vocales = ["a","e","i","o","u"];
+            var totalVocales = 0;
+            for(let i = 0; i < texto.length; i++){
+                if(vocales.includes(texto[i].toLowerCase())){
+                    totalVocales++;
+                }
+            }
+            return totalVocales;
+        }
+        function contadorLetras(texto){
+            return texto.length;
+        }
+        function mostrarContenidoTexto(){
+            const elementoEntrada = document.getElementById('textoEntrada');
+            const texto = elementoEntrada.value;
+            var totalVocales = contadorVocalesTexto(texto);
+            var totalLetras = contadorLetras(texto);
+
+            document.getElementById('resultado').innerHTML = `El total de vocales en la
+            palabra ${texto} son: ${totalVocales}`;
+
+            document.getElementById('resultado2').innerHTML = `El total de letras en la 
+            palabras son: ${totalLetras}`;
+        }
+
+
+    </script>
+</body>
+</html>

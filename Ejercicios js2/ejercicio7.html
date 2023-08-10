@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Factura {
+            constructor(numero,cliente,divisa,subtotal,IVA){
+                this.numero = numero;
+                this.cliente = cliente;
+                this.divisa = divisa;
+                this.subtotal = subtotal;
+                this.IVA = IVA;
+            }
+            get total(){
+                    return this.subtotal + this.IVA;
+                }
+            static calcularDiferenncia(factura1, factura2){
+                return factura1.total - factura2.total;
+            }
+        }
+        const factura1 = new Factura(201,"Traansportes SA","eur",542,113);
+        const factura2 = new Factura(202,"Mudanzas SA","eur",100,21);
+
+        console.log("La diferencia entre las facturas es de " 
+        + Factura.calcularDiferenncia(factura1, factura2));
+        
+    </script>
+</body>
+</html>

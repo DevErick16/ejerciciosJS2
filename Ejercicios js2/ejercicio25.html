@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=divdic, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="salida"></div>
+    <div id="salida2"></div>
+    <input type="button" value="Ver lista" onclick="Ver()">
+    <input type="button" value="Duplicar" onclick="modificar(2)">
+
+    <script>
+        var inicial = [10, 20, 30, 40, 50, 60, 70, 80]; 
+        var final = [];
+
+        function Ver(){
+            document.getElementById('salida').innerHTML = (`${inicial}`);
+            if(final.length != 0)
+            document.getElementById('salida2').innerHTML = (`${final}`);
+        }
+        function efectuar(iniciales){
+            return iniciales * 2;
+        }
+        function modificar(valor){
+            final = inicial.map(efectuar);
+            Ver();
+        }
+    </script>
+</body>
+</html>

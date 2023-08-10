@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Biblioteca.</h1>
+    <button onclick="mostrarLibros()">Mostrar todos los libros</button>
+    <button onclick="librosMayorPrecio()">libros+20</button><br>
+    Autor: 
+    <select id="autor">
+        <option value="Rick Riordan">Rick Riordan</option>
+        <option value="Jostein Gaarder">Jostein Gaarder</option>
+        <option value="Michael McCandless">Michael McCandless</option>
+        <option value="J.K. Rowling">J.K. Rowling</option>
+        <option value="Stephen King">Stephen King</option>
+    </select>
+    <div id="resultados"></div>
+    <script>
+        const libros= [
+    {
+    "id" : "978-0641723445",
+    "cat" : ["book","hardcover"],  
+    "name" : "The Lightning Thief",  
+    "author" : "Rick Riordan",
+    "series_t" : "Percy Jackson and the Olympians",  
+    "genre_s" : "fantasy",
+    "inStock" : true,
+    "price" : 12,
+    "pages_i" : 384
+    }
+    ,
+    {
+    "id" : "978-1857995879",
+    "cat" : ["book","paperback"],
+    "name" : "Sophie's World : The Greek Philosophers",  
+    "author" : "Jostein Gaarder",
+    "genre_s" : "fantasy",
+    "inStock" : true,  
+    "price" : 3,
+    "pages_i" : 64
+    }
+    ,
+    {
+    "id" : "978-1933988180",
+    "cat" : ["book","paperback"],
+    "name" : "Lucene in Action, First Edition", 
+    "author" : "Michael McCandless",
+    "genre_s" : "IT",
+    "inStock" : true,
+    "price" : 30,
+    "pages_i" : 435
+    },
+    {
+    "id" : "978-1933988107",
+    "cat" : ["book","paperback"],
+    "name" : "Lucene in Action, Second Edition", 
+    "author" : "Michael McCandless",
+    "genre_s" : "IT",
+    "inStock" : true,
+    "price" : 30,
+    "pages_i" : 475
+    },
+    {
+    "id" : "978-1933988111",
+    "cat" : ["book","paperback"],
+    "name" : "Harry potteer", 
+    "author" : "J.K. Rowling",
+    "genre_s" : "faantasy",
+    "inStock" : true,
+    "price" : 32,
+    "pages_i" : 4100
+    },
+    {
+    "id" : "978-1933988122",
+    "cat" : ["book","paperback"],
+    "name" : "IT", 
+    "author" : "Stephen King",
+    "genre_s" : "terror",
+    "inStock" : true,
+    "price" : 30,
+    "pages_i" : 1504
+    }
+    ]
+    const resultadoDiv = document.getElementById('resultados');
+    const inputAutor = document.getElementById('autor');
+    function mostrarLibros(){
+        resultadoDiv.innerHTML = `<h1>Todos los libros</h1>`;
+        libros.forEach(libro => {
+            resultadoDiv.innerHTML += `
+            <p>id: ${libro.id}</p>
+            <p>titulo: ${libro.name}</p>
+            <p>autor: ${libro.author}</p>
+            <p>genero: ${libro.genre_s}</p>
+            <p>precio: ${libro.price}</p>
+            <p>paginas: ${libro.pages_i}</p><hr>`;
+        });
+    }
+    function librosMayorPrecio(){
+        resultadoDiv.innerHTML = `<h1>libros mayores a 20 dlls</h1>`;
+        libros.forEach(libro => {
+            if(libro.price >= 20){
+                resultadoDiv.innerHTML += `<p>id: ${libro.id}</p>
+                <p>titulo: ${libro.name}</p>
+                <p>autor: ${libro.author}</p>
+                <p>genero: ${libro.genre_s}</p>
+                <p>precio: ${libro.price}</p>
+                <p>paginas: ${libro.pages_i}</p><hr>`;
+            }
+        });
+
+    }
+
+    inputAutor.addEventListener('change', ()=>{
+        var autor = inputAutor.value;
+        resultadoDiv.innerHTML = `<h2>libros por ${autor}</h2>`;
+        libros.forEach(libro => {
+            if(autor === libro.author){
+                resultadoDiv.innerHTML += `<p>id: ${libro.id}</p>
+                <p>titulo: ${libro.name}</p>
+                <p>autor: ${libro.author}</p>
+                <p>genero: ${libro.genre_s}</p>
+                <p>precio: ${libro.price}</p>
+                <p>paginas: ${libro.pages_i}</p><hr>`;
+            }
+        })
+    });
+    
+            
+    
+        </script>
+</body>
+</html>

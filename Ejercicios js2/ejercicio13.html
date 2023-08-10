@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora area y perimetro</title>
+    
+</head>
+<body>
+    <h1>Calculadora de Area y perimetro</h1>
+    Selecciona una figura 
+    <select id="figura">
+    <option value="triangulo">Triangulo</option>
+    <option value="cuadrado">Cuadrado</option>
+    <option value="rectangulo">Rectangulo</option>
+    </select>
+    <div id="inputs"></div>
+    <input type="button" value="Calcular" id="button">
+    <div id="resultado"></div>
+    <script>
+        const figuraSelect= document.getElementById('figura');
+        const inputDiv = document.getElementById('inputs');
+        const resultadoDiv = document.getElementById('resultado');
+        const btnCalcular = document.getElementById('button')
+
+        class Triangulo{
+            constructor(base, altura){
+                this.base = base;
+                this.altura = altura;
+            }
+            calcularArea(){
+                return this.base * this.altura;
+            }
+            calcularPerimetro(){
+                return this.base + (2 * Math.sqrt((this.altura*2) + ((this.base / 2) ** 2)));
+            }
+        }
+        class Cuadrado{
+            constructor(lado){
+                this.lado = lado;
+            }
+            calcularArea(){
+                return this.lado * this.lado;
+            }
+            calcularPerimetro(){
+                return 4 * this.lado;
+            }
+        }
+        class Rectangulo{
+            constructor(base, altura){
+                this.base = base;
+                this.altura = altura;
+            }
+            calcularArea(){
+                return this.base * this.altura;
+            }
+            calcularPerimetro(){
+                return 2 * (this.base * this.altura);
+            }
+        }
+        figuraSelect.addEventListener('change', () => {
+            const figura = figuraSelect.value;
+            if(figura == 'triangulo' || figura == 'rectangulo'){
+                inputDiv.innerHTML = `ingresa base: <input type="text" id="base"><br>
+                ingresa altura: <input type="text" id="altura"><br>`;
+            } else if (figura == "cuadrado"){
+                inputDiv.innerHTML = `ingresa lado: <input type="text" id="lado"><br>`;
+            }
+        });
+        btnCalcular.addEventListener('click',() =>{
+        
+            const figura = figuraSelect.value;
+            let figuraObj;
+            if(figura == 'triangulo'){
+                const base = parseFloat(document.getElementById('base').value);
+                const altura = parseFloat(document.getElementById('altura').value);
+                figuraObj = new Triangulo(base, altura);
+            }else if(figura == 'rectangulo'){
+                const base = parseFloat(document.getElementById('base').value);
+                const altura = parseFloat(document.getElementById('altura').value);
+                figuraObj = new Rectangulo(base, altura);
+            } else if(figura == `cuadrado`){
+                const lado = parseFloat(document.getElementById('lado').value);
+                figuraObj = new Cuadrado(lado)
+            }
+            const area = figuraObj.calcularArea();
+            const perimetro = figuraObj.calcularPerimetro();
+
+            resultadoDiv.innerHTML= `<p>Area: ${area}</p>
+            <p>Perimetro: ${perimetro}</p>`;
+        });
+        
+    </script>
+</body>
+</html>
